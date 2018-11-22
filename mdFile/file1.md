@@ -2,7 +2,7 @@
 1.新建一个Maven项目  
 ![sp_1.jpg](https://github.com/yangxuechen/learnSSM/blob/master/resource/sping-learn-images/sp_1.jpg)  
 项目的结构图  
-![sp_2](https://github.com/yangxuechen/learnSSM/blob/master/resource/sping-learn-images/sp_2.jpg)
+![sp_2](https://github.com/yangxuechen/learnSSM/blob/master/resource/sping-learn-images/sp_2.jpg)  
 2.配置pom.xml,引入项目需要的依赖,这里引入了spring,junit  
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
