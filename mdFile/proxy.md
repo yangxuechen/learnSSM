@@ -57,5 +57,98 @@ public class Test {
 ```  
 运行结果  
 ![result](https://github.com/yangxuechen/learnSSM/blob/master/resource/sping-learn-images/result.jpg)  
+**二.JDK动态代理**  
+1.创建接口及实现类  
+```java
+public interface TestDao {
+    void save();
+    void delete();
+}
+
+```  
+```java
+public class TestDaoImpl  implements TestDao{
+    public void save() {
+        System.out.println("保存");
+    }
+
+    public void delete() {
+        System.out.println("删除");
+    }
+}
+```  
+2.创建切面类  
+```java
+public class MyAspect {
+    public void check(){
+        System.out.println("模拟权限控制");
+    }
+    public void except(){
+        System.out.println("模拟异常处理");
+    }
+    public void log(){
+        System.out.println("模拟日志记录");
+    }
+    public void monitor(){
+        System.out.println("性能检测");
+    }
+}
+```  
+3.创建代理类  
+```java
+public class JDKDynamicProxy implements InvocationHandler {
+
+    //声明目标类接口对象(真实对象)
+    private TestDao testDao;
+
+    //创建代理的方法 建立代理对象和真实对象的代理关系 ，并返回代理对象
+    public Object createProxy(TestDao testDao){
+        this.testDao=testDao;
+
+        //1.类加载器
+        ClassLoader cld=JDKDynamicProxy.class.getClassLoader();
+        //2.被代理对象实现的所有接口
+        Class[] clazz=testDao.getClass().getInterfaces();
+        //3.使用代理对象进行增强，返回代理后的对象
+        return Proxy.newProxyInstance(cld,clazz,  this);
+    }
+
+    public Object invoke(Object o, Method method, Object[] objects) throws Throwable {
+        //创建一个切面
+        MyAspect myAspect=new MyAspect();
+        //前增强
+        myAspect.check();
+        myAspect.except();
+        //在目标类上调用方法并传入参数，相当于调用testDao中的方法
+        Object obj=method.invoke(testDao,objects);
+        //后增强
+        myAspect.log();
+        myAspect.monitor();
+        return obj;
+    }
+}
+```  
+4.创建测试类  
+```java
+public class Test {
+    public static void main(String[] args) {
+        //创建代理对象
+        JDKDynamicProxy jdkDynamicProxy=new JDKDynamicProxy();
+        //创建目标对象
+        TestDao testDao=new TestDaoImpl();
+
+        //从代理对象中获取增强后的目标对象，该对象是一个被代理的对象
+        TestDao testDaoAdvice=(TestDao) jdkDynamicProxy.createProxy(testDao);
+
+        //执行方法
+        testDaoAdvice.save();
+        System.out.println("**********************");
+        testDaoAdvice.delete();
+    }
+}
+```  
+5程序运行结果图  
+![jdkDynamicProxy](https://github.com/yangxuechen/learnSSM/blob/master/resource/sping-learn-images/jdkDynamicProxy.jpg)  
+
 
 
