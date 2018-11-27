@@ -149,6 +149,80 @@ public class Test {
 ```  
 5程序运行结果图  
 ![jdkDynamicProxy](https://github.com/yangxuechen/learnSSM/blob/master/resource/sping-learn-images/jdkDynamicProxy.jpg)  
+**三.CGLIB动态代理**  
+1.创建目标类  
+```java
+public class TestDao {
+    public void save(){
+        System.out.println("保存");
+    }
+
+    public void modify(){
+        System.out.println("修改");
+    }
+    public void delete(){
+        System.out.println("删除");
+    }
+}
+
+```  
+2.创建代理类  
+```java
+public class CglibDynamicProxy implements MethodInterceptor {
+
+    public Object createProxy(Object target){
+        //创建一个动态类对象，即增强类对象
+        Enhancer enhancer=new Enhancer();
+
+        //确定需要增强的类，设置其父类
+        enhancer.setSuperclass(target.getClass());
+
+        //确定代理逻辑为当前对象，要求当前对象实现Methodterceptor的方法
+        enhancer.setCallback(this);
+
+        //返回创建的代理对象
+        return enhancer.create();
+    }
+
+
+    public Object intercept(Object proxy, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
+       //创建一个切面
+        MyAspect myAspect=new MyAspect();
+        //前增强
+        myAspect.check();
+        myAspect.except();
+
+        //目标方法执行，返回代理结果
+        Object obj=methodProxy.invokeSuper(proxy,objects);
+
+        //后增强
+        myAspect.log();
+        myAspect.monitor();
+
+        return obj;
+    }
+}
+```  
+3.创建测试类  
+```java
+public class Test {
+    public static void main(String[] args) {
+
+        //创建代理对象
+        CglibDynamicProxy cdp=new CglibDynamicProxy();
+        //创建目标对象
+        TestDao testDao=new TestDao();
+
+        //获取增强后的目标对象
+        TestDao testDaoAdvice =(TestDao) cdp.createProxy(testDao);
+
+        //执行方法
+        testDaoAdvice.save();
+        System.out.println("********************");
+        testDaoAdvice.delete();
+    }
+}
+```
 
 
 
