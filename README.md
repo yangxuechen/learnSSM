@@ -7,5 +7,7 @@
 [5.spring JdbcTemplate](https://github.com/yangxuechen/learnSSM/blob/master/mdFile/springJdbcTemplate.md)  
 [6.基于代理类的AOP实现](https://github.com/yangxuechen/learnSSM/blob/master/mdFile/springAop.md)  
 [7.基于XML配置开发AspectJ](https://github.com/yangxuechen/learnSSM/blob/master/mdFile/aspectJ.md)  
+[8.基于注解开发AspectJ](https://github.com/yangxuechen/learnSSM/blob/master/mdFile/aspectJAnnotation.md)  
+
 
 
