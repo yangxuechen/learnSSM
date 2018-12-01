@@ -8,6 +8,8 @@
 [6.基于代理类的AOP实现](https://github.com/yangxuechen/learnSSM/blob/master/mdFile/springAop.md)  
 [7.基于XML配置开发AspectJ](https://github.com/yangxuechen/learnSSM/blob/master/mdFile/aspectJ.md)  
 [8.基于注解开发AspectJ](https://github.com/yangxuechen/learnSSM/blob/master/mdFile/aspectJAnnotation.md)  
+[9.spring整合mybatis](https://github.com/yangxuechen/learnSSM/blob/master/mdFile/spring-mybatis.md)  
+
 
 
 
