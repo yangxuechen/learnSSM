@@ -9,6 +9,9 @@
 [7.基于XML配置开发AspectJ](https://github.com/yangxuechen/learnSSM/blob/master/mdFile/aspectJ.md)  
 [8.基于注解开发AspectJ](https://github.com/yangxuechen/learnSSM/blob/master/mdFile/aspectJAnnotation.md)  
 [9.spring整合mybatis](https://github.com/yangxuechen/learnSSM/blob/master/mdFile/spring-mybatis.md)  
+### mybatis的学习  
+[1.Mybatis映射器 传递多个参数](https://github.com/yangxuechen/learnSSM/blob/master/mdFile/mybatis_1.md)  
+
 
 
 
