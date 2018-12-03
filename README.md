@@ -11,6 +11,7 @@
 [9.spring整合mybatis](https://github.com/yangxuechen/learnSSM/blob/master/mdFile/spring-mybatis.md)  
 ### mybatis的学习  
 [1.Mybatis映射器 传递多个参数](https://github.com/yangxuechen/learnSSM/blob/master/mdFile/mybatis_1.md)  
+[2.mybatis \\<insert\>元素](https://github.com/yangxuechen/learnSSM/blob/master/mdFile/mybatis_2.md)  
 
 
 
